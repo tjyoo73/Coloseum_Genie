@@ -3,6 +3,7 @@ package com.tjlab.coloseum_genie
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.tjlab.coloseum_genie.adapers.TopicAdapter
 import com.tjlab.coloseum_genie.databinding.ActivityMainBinding
 import com.tjlab.coloseum_genie.datas.Topic
@@ -29,9 +30,7 @@ class MainActivity : BaseActivity() {
             val myIntent = Intent(mContext, ViewTopicDetailActivity::class.java)
             myIntent.putExtra("topic", clickedTopic)
             startActivity(myIntent)
-
         }
-
     }
 
     override fun setValues() {
@@ -39,6 +38,7 @@ class MainActivity : BaseActivity() {
         mTopicAdapter = TopicAdapter(mContext, R.layout.toipc_list_item, mTopicList)
         binding.topicListView.adapter = mTopicAdapter
 
+        backBtn.visibility = View.GONE
     }
 
     fun getTopicListFromServer() {
@@ -57,8 +57,6 @@ class MainActivity : BaseActivity() {
                     mTopicAdapter.notifyDataSetChanged()
                 }
             }
-
         })
-
     }
 }
